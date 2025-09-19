@@ -18,11 +18,15 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        ryde: "bg-blue-500 text-white shadow-lg hover:bg-blue-600 hover:shadow-xl hover:scale-105 transition-all duration-200",
+        rydeOutline: "text-blue-400 border-2 border-blue-400 bg-transparent hover:bg-blue-400 hover:text-slate-900 transition-all duration-200",
+        rydeGhost: "text-blue-400 hover:bg-blue-400/10 hover:text-blue-300 transition-all duration-200"
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-12 rounded-lg px-8 text-lg font-semibold",
         icon: "h-10 w-10",
       },
     },
