@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import { PhoenixTracker } from "@/components/PhoenixTracker";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -46,6 +47,8 @@ export default function RootLayout({
             </TooltipProvider>
           </ThemeProvider>
         </QueryProvider>
+        <PhoenixTracker />
+
       </body>
     </html>
   );
