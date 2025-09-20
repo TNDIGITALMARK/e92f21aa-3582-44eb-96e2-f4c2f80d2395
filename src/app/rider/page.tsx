@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { MapPin, Navigation, Clock, Star } from 'lucide-react';
+import { MapPin, Navigation, Clock, Star, ArrowLeft, Menu, User } from 'lucide-react';
 
 export default function RiderPage() {
   const [selectedRide, setSelectedRide] = useState<string>('');
@@ -12,25 +12,28 @@ export default function RiderPage() {
       id: 'uberx',
       name: 'UberX',
       price: '$12-15',
-      time: '3 min away',
+      time: '3 min',
       description: 'Affordable, everyday rides',
-      icon: '🚗'
+      icon: '🚗',
+      seats: '1-4'
     },
     {
       id: 'comfort',
-      name: 'Uber Comfort',
+      name: 'Comfort',
       price: '$18-22',
-      time: '5 min away',
-      description: 'Newer cars with more space',
-      icon: '🚙'
+      time: '5 min',
+      description: 'Newer cars with extra legroom',
+      icon: '🚙',
+      seats: '1-4'
     },
     {
       id: 'xl',
-      name: 'Uber XL',
+      name: 'UberXL',
       price: '$24-28',
-      time: '8 min away',
-      description: 'Extra seats for up to 6',
-      icon: '🚐'
+      time: '8 min',
+      description: 'Extra seats for up to 6 people',
+      icon: '🚐',
+      seats: '1-6'
     }
   ];
 
@@ -43,122 +46,202 @@ export default function RiderPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-white text-gray-900 relative">
       {/* Header */}
-      <div className="relative z-20 p-4 bg-slate-800/50 backdrop-blur-sm">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-blue-400">RYDE</h1>
-          <button className="p-2 rounded-full bg-slate-700 hover:bg-slate-600">
-            <div className="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center">
-              <span className="text-slate-900 font-bold text-sm">U</span>
+      <div className="relative z-20 bg-white border-b border-gray-100">
+        <div className="flex items-center justify-between px-4 py-3">
+          <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <h1 className="text-lg font-semibold">Set pickup location</h1>
+          <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+              <User className="w-4 h-4 text-gray-600" />
             </div>
           </button>
         </div>
       </div>
 
-      {/* Map Area */}
-      <div className="relative h-96 bg-slate-800 overflow-hidden">
-        {/* Simulated Map Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900">
-          {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="grid grid-cols-8 grid-rows-6 h-full w-full">
-              {Array.from({ length: 48 }).map((_, i) => (
-                <div key={i} className="border border-slate-600/30"></div>
-              ))}
-            </div>
-          </div>
+      {/* Enhanced Map Area */}
+      <div className="relative flex-1 bg-gray-100 overflow-hidden">
+        {/* Realistic Map Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-gray-100">
+          {/* Street Grid Pattern */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="streets" patternUnits="userSpaceOnUse" width="80" height="60">
+                <rect width="80" height="60" fill="transparent"/>
+                <path d="M 0 30 L 80 30" stroke="#e5e7eb" strokeWidth="2"/>
+                <path d="M 40 0 L 40 60" stroke="#e5e7eb" strokeWidth="2"/>
+              </pattern>
+              <pattern id="blocks" patternUnits="userSpaceOnUse" width="160" height="120">
+                <rect width="160" height="120" fill="transparent"/>
+                <rect x="10" y="10" width="140" height="100" fill="#f9fafb" stroke="#e5e7eb" strokeWidth="1"/>
+              </pattern>
+            </defs>
 
-          {/* User Location Pin */}
+            <rect width="100%" height="100%" fill="url(#blocks)"/>
+            <rect width="100%" height="100%" fill="url(#streets)"/>
+
+            {/* Major Roads */}
+            <path d="M 0 200 L 800 200" stroke="#d1d5db" strokeWidth="4"/>
+            <path d="M 0 400 L 800 400" stroke="#d1d5db" strokeWidth="4"/>
+            <path d="M 200 0 L 200 600" stroke="#d1d5db" strokeWidth="4"/>
+            <path d="M 600 0 L 600 600" stroke="#d1d5db" strokeWidth="4"/>
+
+            {/* Parks/Green Areas */}
+            <rect x="250" y="80" width="120" height="80" fill="#dcfce7" rx="8"/>
+            <rect x="500" y="320" width="80" height="80" fill="#dcfce7" rx="8"/>
+
+            {/* Water Feature */}
+            <ellipse cx="150" cy="500" rx="60" ry="30" fill="#dbeafe"/>
+          </svg>
+
+          {/* User Location Pin with Pulse Effect */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="relative">
-              <div className="w-6 h-6 bg-blue-500 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
-              <div className="absolute -top-2 -left-2 w-10 h-10 bg-blue-500/20 rounded-full animate-ping"></div>
+              <div className="w-4 h-4 bg-blue-600 rounded-full border-2 border-white shadow-lg z-10 relative"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-blue-600/30 rounded-full animate-ping"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-blue-600/10 rounded-full animate-ping animation-delay-300"></div>
             </div>
           </div>
 
-          {/* Driver Car Icons */}
+          {/* Enhanced Driver Car Icons */}
           {nearbyDrivers.map((driver) => (
             <div
               key={driver.id}
-              className="absolute w-6 h-6 transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute transform -translate-x-1/2 -translate-y-1/2 z-20"
               style={{
                 left: `${20 + (driver.id * 15)}%`,
                 top: `${30 + (driver.id * 10)}%`,
-                transform: `rotate(${driver.rotation}deg) translate(-50%, -50%)`
               }}
             >
-              <div className="w-6 h-6 bg-white rounded-sm shadow-lg flex items-center justify-center">
-                <span className="text-xs">🚗</span>
+              <div
+                className="w-8 h-8 bg-black rounded-lg shadow-lg flex items-center justify-center transform transition-transform hover:scale-110"
+                style={{
+                  transform: `rotate(${driver.rotation}deg)`,
+                }}
+              >
+                <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
+                <div className="absolute w-1 h-1 bg-white rounded-full top-1 left-1/2 transform -translate-x-1/2"></div>
               </div>
             </div>
           ))}
+
+          {/* Route Suggestion Line */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none">
+            <path
+              d="M 400 300 Q 450 250 500 280 Q 550 310 600 290"
+              stroke="#3b82f6"
+              strokeWidth="3"
+              fill="none"
+              strokeDasharray="10,5"
+              className="animate-pulse opacity-60"
+            />
+          </svg>
+        </div>
+
+        {/* Map Controls */}
+        <div className="absolute top-4 right-4 flex flex-col space-y-2">
+          <button className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-gray-50">
+            <span className="text-lg font-bold text-gray-700">+</span>
+          </button>
+          <button className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-gray-50">
+            <span className="text-lg font-bold text-gray-700">−</span>
+          </button>
         </div>
 
         {/* Current Location Indicator */}
-        <div className="absolute bottom-4 left-4 bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border border-slate-700">
+        <div className="absolute bottom-4 left-4 bg-white rounded-lg p-3 shadow-lg border border-gray-200">
           <div className="flex items-center space-x-2 text-sm">
-            <MapPin className="w-4 h-4 text-blue-400" />
-            <span className="text-slate-300">123 Main Street</span>
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="text-gray-700 font-medium">123 Main Street, New York</span>
           </div>
+        </div>
+
+        {/* Center Location Button */}
+        <div className="absolute bottom-1/2 right-4 transform translate-y-1/2">
+          <button className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors">
+            <Navigation className="w-5 h-5 text-gray-600" />
+          </button>
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative z-10 -mt-8 mx-4">
-        <div className="bg-white rounded-lg shadow-xl p-4">
+      {/* Bottom Sheet - Search and Ride Options */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl max-h-[70vh] overflow-hidden">
+        {/* Handle */}
+        <div className="flex justify-center py-2">
+          <div className="w-8 h-1 bg-gray-300 rounded-full"></div>
+        </div>
+
+        {/* Search Section */}
+        <div className="px-4 pb-4">
           <div className="space-y-3">
-            <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-              <span className="text-slate-600 text-sm">123 Main Street</span>
+            <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="flex-1">
+                <span className="text-gray-500 text-xs">FROM</span>
+                <div className="text-gray-900 font-medium">123 Main Street</div>
+              </div>
             </div>
-            <div className="flex items-center space-x-3 p-3 border-2 border-dashed border-slate-300 rounded-lg">
-              <MapPin className="w-4 h-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Where to?"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                className="flex-1 bg-transparent text-slate-900 placeholder-slate-500 outline-none"
-              />
+
+            <div className="flex items-center space-x-3 p-4 border border-gray-200 rounded-xl">
+              <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
+              <div className="flex-1">
+                <span className="text-gray-500 text-xs">TO</span>
+                <input
+                  type="text"
+                  placeholder="Where to?"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  className="w-full bg-transparent text-gray-900 placeholder-gray-400 outline-none font-medium"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Ride Options Panel */}
-      <div className="flex-1 bg-slate-900 mt-6 mx-4">
-        <div className="bg-slate-800 rounded-t-xl border border-slate-700">
-          <div className="p-4 border-b border-slate-700">
-            <h2 className="text-lg font-semibold text-white">Choose a ride</h2>
-            <p className="text-slate-400 text-sm">5-8 drivers nearby</p>
+        {/* Ride Options */}
+        <div className="px-4">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-black">Choose a ride</h2>
+            <span className="text-sm text-gray-500">
+              <Clock className="w-4 h-4 inline mr-1" />
+              {rideOptions.find(r => r.id === selectedRide)?.time || '3-8 min'}
+            </span>
           </div>
 
-          <div className="space-y-3 p-4">
+          <div className="space-y-2 max-h-60 overflow-y-auto">
             {rideOptions.map((option) => (
               <button
                 key={option.id}
                 onClick={() => setSelectedRide(option.id)}
-                className={`w-full p-4 rounded-lg border-2 transition-all duration-200 ${
+                className={`w-full p-4 rounded-xl border transition-all duration-200 ${
                   selectedRide === option.id
-                    ? 'border-blue-400 bg-blue-400/10'
-                    : 'border-slate-600 bg-slate-700/50 hover:border-slate-500'
+                    ? 'border-black bg-gray-50'
+                    : 'border-gray-200 bg-white hover:bg-gray-50'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     <div className="text-2xl">{option.icon}</div>
                     <div className="text-left">
-                      <h3 className="font-semibold text-white">{option.name}</h3>
-                      <p className="text-slate-400 text-sm">{option.description}</p>
-                      <div className="flex items-center space-x-2 mt-1">
-                        <Clock className="w-3 h-3 text-slate-400" />
-                        <span className="text-slate-400 text-xs">{option.time}</span>
+                      <div className="flex items-center space-x-2">
+                        <h3 className="font-semibold text-black">{option.name}</h3>
+                        <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                          {option.seats}
+                        </span>
+                      </div>
+                      <p className="text-gray-500 text-sm">{option.description}</p>
+                      <div className="flex items-center space-x-1 mt-1">
+                        <Clock className="w-3 h-3 text-gray-400" />
+                        <span className="text-gray-400 text-xs">{option.time}</span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-bold text-white">{option.price}</div>
+                    <div className="text-lg font-bold text-black">{option.price}</div>
+                    <div className="text-xs text-gray-500">Est. total</div>
                   </div>
                 </div>
               </button>
@@ -166,16 +249,18 @@ export default function RiderPage() {
           </div>
 
           {/* Request Ride Button */}
-          <div className="p-4">
+          <div className="py-4 bg-white sticky bottom-0">
             <button
-              className={`w-full py-4 rounded-lg font-semibold text-white transition-all duration-200 ${
+              className={`w-full py-4 rounded-xl font-medium text-white transition-all duration-200 ${
                 selectedRide
-                  ? 'bg-blue-500 hover:bg-blue-600 shadow-lg'
-                  : 'bg-slate-600 cursor-not-allowed'
+                  ? 'uber-button shadow-lg'
+                  : 'bg-gray-300 cursor-not-allowed'
               }`}
               disabled={!selectedRide}
             >
-              {selectedRide ? 'Request Ride' : 'Choose a ride option'}
+              {selectedRide
+                ? `Choose ${rideOptions.find(r => r.id === selectedRide)?.name}`
+                : 'Select a ride option'}
             </button>
           </div>
         </div>

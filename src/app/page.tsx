@@ -2,220 +2,223 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { MapPin, Clock, Shield, Smartphone } from 'lucide-react';
+import { MapPin, Clock, Shield, Menu } from 'lucide-react';
 
 export const dynamic = 'force-dynamic'
 
 export default function HomePage() {
   const features = [
     {
-      icon: <Smartphone className="w-8 h-8" />,
-      title: 'Request Rides App',
-      description: 'Book rides instantly with our mobile-first platform'
+      icon: <MapPin className="w-6 h-6" />,
+      title: 'Reliable rides',
+      description: 'Get where you need to go with the tap of a button'
     },
     {
-      icon: <MapPin className="w-8 h-8" />,
-      title: 'Intelligent Matching',
-      description: 'Advanced algorithms match you with nearby drivers'
+      icon: <Clock className="w-6 h-6" />,
+      title: 'Always on time',
+      description: 'Arrive at your destination when you need to'
     },
     {
-      icon: <Shield className="w-8 h-8" />,
-      title: 'Safety First',
-      description: 'Comprehensive safety features and driver screening'
+      icon: <Shield className="w-6 h-6" />,
+      title: 'Safety first',
+      description: 'We build safety into every part of your experience'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Header */}
-      <header className="relative z-20 p-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700">
-        <div className="container mx-auto flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-blue-400">RYDE</h1>
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-slate-300 hover:text-white transition-colors">Home</a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors">Features</a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors">Pricing</a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors">Drivers</a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors">Company</a>
-          </nav>
-          <button className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg font-semibold transition-colors">
-            Sign Up
-          </button>
+      <header className="relative z-20 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold text-black">Uber</h1>
+            </div>
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#" className="text-gray-600 hover:text-black transition-colors font-medium">Ride</a>
+              <a href="#" className="text-gray-600 hover:text-black transition-colors font-medium">Drive</a>
+              <a href="#" className="text-gray-600 hover:text-black transition-colors font-medium">Business</a>
+              <a href="#" className="text-gray-600 hover:text-black transition-colors font-medium">About</a>
+            </nav>
+            <div className="flex items-center space-x-4">
+              <button className="uber-button-outline px-4 py-2 text-sm font-medium">
+                Log in
+              </button>
+              <button className="uber-button px-4 py-2 text-sm font-medium">
+                Sign up
+              </button>
+              <button className="md:hidden p-2">
+                <Menu className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div className="container mx-auto text-center relative z-10">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Your Journey,
-            <br />
-            <span className="text-blue-400">Reimagined</span>
-          </h2>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Experience the future of transportation with seamless rides,
-            intelligent matching, and safety at every turn.
-          </p>
+      <section className="bg-gray-50 py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+            <div>
+              <h1 className="text-4xl lg:text-6xl font-bold text-black leading-tight">
+                Go anywhere with Uber
+              </h1>
+              <p className="mt-4 text-lg text-gray-600 max-w-lg">
+                Request a ride, hop in, and go. Choose from a variety of ride options.
+              </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link
-              href="/rider"
-              className="bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg"
-            >
-              Download the App
-            </Link>
-            <button className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-slate-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all">
-              Learn More
-            </button>
-          </div>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/rider"
+                  className="uber-button px-6 py-3 text-base font-medium inline-flex items-center justify-center"
+                >
+                  Get a ride
+                </Link>
+                <button className="uber-button-outline px-6 py-3 text-base font-medium">
+                  Learn more
+                </button>
+              </div>
 
-          {/* Network Animation */}
-          <div className="relative w-full h-64 mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-transparent rounded-xl">
-              {/* Network nodes */}
-              <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-blue-300 rounded-full animate-pulse delay-300"></div>
-              <div className="absolute bottom-1/3 left-1/3 w-5 h-5 bg-blue-500 rounded-full animate-pulse delay-700"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-3 h-3 bg-blue-300 rounded-full animate-pulse delay-500"></div>
-              <div className="absolute top-1/2 left-1/2 w-6 h-6 bg-blue-400 rounded-full animate-pulse delay-1000 transform -translate-x-1/2 -translate-y-1/2"></div>
-
-              {/* Connection lines */}
-              <svg className="absolute inset-0 w-full h-full">
-                <defs>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.6"/>
-                    <stop offset="100%" stopColor="#1E40AF" stopOpacity="0.2"/>
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M 64 64 L 200 85 L 85 170 L 200 192 L 128 128"
-                  stroke="url(#lineGradient)"
-                  strokeWidth="2"
-                  fill="none"
-                  className="animate-pulse"
-                />
-              </svg>
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {features.map((feature, index) => (
+                  <div key={index} className="text-left">
+                    <div className="text-gray-900 mb-2">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-black mb-1">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {feature.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-4 bg-slate-800/30">
-        <div className="container mx-auto">
-          <h3 className="text-3xl font-bold text-center text-white mb-4">
-            Seamless Mobility
-          </h3>
-          <p className="text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-            Experience transportation reimagined with cutting-edge technology
-            and user-centric design.
-          </p>
+            <div className="mt-10 lg:mt-0">
+              <div className="relative">
+                <div className="bg-white rounded-lg shadow-lg p-6 relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold">Plan your ride</h3>
+                    <div className="flex space-x-2">
+                      <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                      <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                      <div className="w-2 h-2 bg-black rounded-full"></div>
+                    </div>
+                  </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center p-6 bg-slate-800 rounded-xl border border-slate-700 hover:border-blue-400 transition-all">
-                <div className="text-blue-400 mb-4 flex justify-center">
-                  {feature.icon}
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      <span className="text-gray-700 flex-1">Pickup location</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                      <div className="w-3 h-3 bg-black rounded-full"></div>
+                      <span className="text-gray-700 flex-1">Destination</span>
+                    </div>
+                    <button className="w-full uber-button py-3 text-base font-medium">
+                      See prices
+                    </button>
+                  </div>
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-3">
-                  {feature.title}
-                </h4>
-                <p className="text-slate-300">
-                  {feature.description}
-                </p>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gray-200 rounded-full opacity-20"></div>
+                <div className="absolute -top-4 -left-4 w-16 h-16 bg-gray-200 rounded-full opacity-30"></div>
               </div>
-            ))}
-          </div>
-
-          {/* Feature Highlights */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
-              <div className="text-blue-400 mb-4">
-                <Clock className="w-8 h-8" />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Real-Time Tracking</h4>
-              <p className="text-slate-300 text-sm">Track your ride in real-time with precise GPS updates</p>
-            </div>
-
-            <div className="bg-blue-600 rounded-xl p-6 text-center">
-              <h4 className="text-lg font-semibold text-white mb-2">Multiple Payment Options</h4>
-              <p className="text-blue-100 text-sm">Choose from various payment methods for your convenience</p>
-            </div>
-
-            <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
-              <div className="text-blue-400 mb-4">
-                <Shield className="w-8 h-8" />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Safety First</h4>
-              <p className="text-slate-300 text-sm">Comprehensive background checks and safety features</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-blue-600">
-        <div className="container mx-auto text-center">
-          <h3 className="text-4xl font-bold text-white mb-4">
-            Ready to Ride?
-          </h3>
-          <p className="text-blue-100 text-xl mb-8">
-            Join millions of users who trust RYDE for their daily transportation needs.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/rider"
-              className="bg-white text-blue-600 hover:bg-slate-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all inline-block"
-            >
-              Start Riding
-            </Link>
-            <Link
-              href="/tracking"
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all inline-block"
-            >
-              View Demo
-            </Link>
+      {/* Services Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-black mb-4">
+              It's easier in the apps
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Download the Uber app for the fastest, most reliable rides.
+              Or become a driver and earn money on your schedule.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="uber-card p-8 text-center">
+              <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-2xl">📱</span>
+              </div>
+              <h3 className="text-xl font-semibold text-black mb-2">
+                Download the Rider app
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Get reliable rides in minutes
+              </p>
+              <button className="uber-button w-full py-3 font-medium">
+                Get the app
+              </button>
+            </div>
+
+            <div className="uber-card p-8 text-center">
+              <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-white text-2xl">🚗</span>
+              </div>
+              <h3 className="text-xl font-semibold text-black mb-2">
+                Drive with Uber
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Make money driving on your schedule
+              </p>
+              <button className="uber-button-outline w-full py-3 font-medium">
+                Sign up to drive
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-12 px-4">
-        <div className="container mx-auto">
+      <footer className="bg-gray-50 border-t border-gray-200 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h4 className="text-2xl font-bold text-blue-400 mb-4">RYDE</h4>
-              <p className="text-slate-400 text-sm">
-                Revolutionizing transportation with technology and trust.
+              <h4 className="text-xl font-bold text-black mb-4">Uber</h4>
+              <p className="text-gray-600 text-sm">
+                Move the way you want
               </p>
             </div>
             <div>
-              <h5 className="text-white font-semibold mb-3">Product</h5>
-              <ul className="text-slate-400 text-sm space-y-2">
-                <li><a href="#" className="hover:text-white">Features</a></li>
-                <li><a href="#" className="hover:text-white">Pricing</a></li>
-                <li><a href="#" className="hover:text-white">Download</a></li>
+              <h5 className="text-black font-semibold mb-3">Company</h5>
+              <ul className="text-gray-600 text-sm space-y-2">
+                <li><a href="#" className="hover:text-black">About us</a></li>
+                <li><a href="#" className="hover:text-black">Our offerings</a></li>
+                <li><a href="#" className="hover:text-black">Newsroom</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="text-white font-semibold mb-3">Company</h5>
-              <ul className="text-slate-400 text-sm space-y-2">
-                <li><a href="#" className="hover:text-white">About Us</a></li>
-                <li><a href="#" className="hover:text-white">Careers</a></li>
-                <li><a href="#" className="hover:text-white">Blog</a></li>
+              <h5 className="text-black font-semibold mb-3">Products</h5>
+              <ul className="text-gray-600 text-sm space-y-2">
+                <li><a href="#" className="hover:text-black">Ride</a></li>
+                <li><a href="#" className="hover:text-black">Drive</a></li>
+                <li><a href="#" className="hover:text-black">Business</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="text-white font-semibold mb-3">Contact</h5>
-              <ul className="text-slate-400 text-sm space-y-2">
-                <li><a href="#" className="hover:text-white">Support</a></li>
-                <li><a href="#" className="hover:text-white">Help Center</a></li>
-                <li><a href="#" className="hover:text-white">Safety</a></li>
+              <h5 className="text-black font-semibold mb-3">Global citizenship</h5>
+              <ul className="text-gray-600 text-sm space-y-2">
+                <li><a href="#" className="hover:text-black">Safety</a></li>
+                <li><a href="#" className="hover:text-black">Diversity</a></li>
+                <li><a href="#" className="hover:text-black">Sustainability</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400 text-sm">
-            <p>&copy; 2024 RYDE. All rights reserved.</p>
+          <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between">
+            <p className="text-gray-600 text-sm">&copy; 2024 Uber Technologies Inc.</p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-600 hover:text-black text-sm">Privacy</a>
+              <a href="#" className="text-gray-600 hover:text-black text-sm">Terms</a>
+              <a href="#" className="text-gray-600 hover:text-black text-sm">Sitemap</a>
+            </div>
           </div>
         </div>
       </footer>
